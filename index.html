@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore how analytics turns activity into better decisions across industries." />
+  <title>Signal — See the story in your data</title>
+  <meta name="theme-color" content="#10141f" />
+  <style>
+    :root{--bg:#0d111b;--panel:#141b29;--panel2:#192235;--text:#f5f7fb;--muted:#aab4c8;--line:#2a3549;--lime:#c7f36b;--blue:#8ab4ff;--pink:#ff9fc8;--yellow:#ffd77a}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none} button,input,select{font:inherit} button{cursor:pointer}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.04em;font-size:1.25rem}.brandmark{display:grid;place-items:center;width:32px;height:32px;background:var(--lime);color:#10141f;border-radius:10px;font-weight:900}
+    .navlinks{display:flex;gap:25px;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:var(--lime)} .nav-cta,.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:750;transition:transform .18s,opacity .18s}.nav-cta,.btn.primary{background:var(--lime);color:#111722}.btn.secondary{background:transparent;color:var(--text);border:1px solid #48536a}.btn:hover,.nav-cta:hover{transform:translateY(-2px)}
+    .hero{padding:82px 0 68px;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}.eyebrow{color:var(--lime);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800}.hero h1{font-size:clamp(2.8rem,6vw,5.5rem);letter-spacing:-.075em;line-height:.99;margin:18px 0 24px;max-width:700px}.hero h1 span{color:var(--lime)}.hero p{color:var(--muted);font-size:1.08rem;max-width:570px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.micro{font-size:.8rem;color:var(--muted);margin-top:16px}
+    .dashboard{background:linear-gradient(145deg,#1a2436,#111722);border:1px solid #303c52;border-radius:24px;padding:22px;box-shadow:0 25px 90px #0005;transform:rotate(1deg)}.dash-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px}.dash-title{font-weight:800}.live{font-size:.72rem;color:var(--lime);border:1px solid #55723c;border-radius:999px;padding:5px 9px}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.metric{background:#101723;border:1px solid #2a3549;padding:14px;border-radius:15px}.metric small{color:var(--muted)}.metric strong{display:block;font-size:1.7rem;letter-spacing:-.04em;margin:5px 0}.positive{color:var(--lime);font-size:.8rem}.chart{width:100%;height:145px;margin-top:18px;background:#101723;border-radius:15px;padding:12px}.chart svg{width:100%;height:100%}.chart path{fill:none;stroke:var(--lime);stroke-width:3;stroke-linecap:round}.chart .gridline{stroke:#2a3549;stroke-width:1}
+    section{padding:70px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.06em;line-height:1.05;margin:10px 0 0}.section-head p{color:var(--muted);max-width:430px;margin:0}.domain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.domain{background:var(--panel);border:1px solid var(--line);padding:22px;border-radius:20px;min-height:240px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}.domain:hover,.domain.active{transform:translateY(-4px);border-color:var(--lime)}.domain .icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.25rem;background:#283347;margin-bottom:18px}.domain h3{margin:0 0 8px;font-size:1.12rem}.domain p{color:var(--muted);font-size:.92rem;margin:0 0 18px}.domain button{margin-top:auto;align-self:flex-start;background:none;border:0;color:var(--lime);padding:0;font-weight:800}
+    .insight-panel{margin-top:18px;border:1px solid #43536d;background:linear-gradient(120deg,#172338,#121925);border-radius:22px;padding:25px;display:grid;grid-template-columns:1fr 1fr;gap:24px}.insight-panel h3{font-size:1.45rem;margin:0 0 8px}.insight-panel p{color:var(--muted);margin:0}.insight-list{display:grid;gap:10px}.insight-row{display:flex;gap:12px;align-items:flex-start;background:#0f1622;border-radius:12px;padding:12px}.tick{color:var(--lime);font-weight:900}
+    .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:25px}.card h3{margin-top:0}.muted{color:var(--muted)}.field{display:grid;gap:7px;margin:15px 0}.field label{font-size:.88rem;color:#dce3ef}.field input,.field select{width:100%;background:#0d131e;border:1px solid #39465e;color:var(--text);border-radius:12px;padding:12px 13px;outline:none}.field input:focus,.field select:focus{border-color:var(--lime)}.result{background:#101723;border-radius:16px;padding:18px;margin-top:16px}.result strong{font-size:2rem;display:block;color:var(--lime);letter-spacing:-.04em}.result p{margin:5px 0 0;color:var(--muted);font-size:.9rem}
+    .quiz-options{display:grid;gap:10px;margin:18px 0}.quiz-option{text-align:left;background:#0f1622;color:var(--text);border:1px solid #354158;border-radius:12px;padding:13px}.quiz-option:hover,.quiz-option.selected{border-color:var(--lime);background:#202c3e}.feedback{min-height:25px;color:var(--lime);font-weight:700;font-size:.9rem}.event-log{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.event-pill{font-size:.76rem;border:1px solid #3b4961;color:#d8e2f2;border-radius:999px;padding:6px 10px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{padding:20px;border-top:2px solid var(--lime);background:var(--panel);border-radius:0 0 16px 16px}.step .num{color:var(--lime);font-weight:900;font-size:.8rem}.step h3{margin:8px 0}.step p{margin:0;color:var(--muted);font-size:.92rem}
+    .cta{padding:35px;border-radius:24px;background:var(--lime);color:#111722;display:flex;justify-content:space-between;align-items:center;gap:20px}.cta h2{font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.06em;line-height:1.05;margin:0 0 8px}.cta p{margin:0;max-width:550px}.cta .btn{background:#111722;color:white;white-space:nowrap}
+    footer{padding:28px 0 40px;color:var(--muted);font-size:.82rem}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
+    .consent{position:fixed;z-index:10;left:20px;right:20px;bottom:20px;max-width:900px;margin:auto;display:none;gap:18px;align-items:center;justify-content:space-between;background:#f5f7fb;color:#111722;padding:18px 20px;border-radius:18px;box-shadow:0 15px 60px #0008}.consent p{font-size:.88rem;margin:0;max-width:610px}.consent-actions{display:flex;gap:8px;flex-shrink:0}.consent button{border:0;border-radius:999px;padding:10px 14px;font-weight:800}.accept{background:#111722;color:white}.reject{background:#e3e8f1;color:#111722}.toast{position:fixed;right:20px;top:20px;background:var(--lime);color:#111722;padding:12px 16px;border-radius:12px;font-weight:800;box-shadow:0 10px 40px #0005;display:none;z-index:20}
+    @media(max-width:800px){.navlinks{display:none}.hero,.split{grid-template-columns:1fr}.hero{padding-top:55px;gap:35px}.dashboard{transform:none}.domain-grid{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-head p{margin-top:14px}.insight-panel{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.cta{display:block}.cta .btn{margin-top:20px}.consent{display:none;flex-direction:column;align-items:flex-start}.consent-actions{flex-wrap:wrap}}
+    @media(max-width:520px){.wrap{width:min(100% - 28px,1120px)}.domain-grid{grid-template-columns:1fr}.hero h1{font-size:3.25rem}.metrics{gap:8px}.metric strong{font-size:1.4rem}.card{padding:19px}.cta{padding:25px}}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" data-event="nav_logo_click"><span class="brandmark">S</span> signal<span style="color:var(--lime)">.</span></a>
+      <div class="navlinks"><a href="#domains" data-event="nav_domains_click">Explore domains</a><a href="#calculator" data-event="nav_calculator_click">Impact calculator</a><a href="#learn" data-event="nav_learn_click">How it works</a></div>
+      <button class="nav-cta" data-event="nav_cta_click" onclick="scrollToSection('calculator')">Find your signal ↗</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Less guessing. More knowing.</div>
+        <h1>See the story<br/>in your <span>data.</span></h1>
+        <p>Analytics turns everyday actions into useful signals. Discover what people need, where experiences break down, and which decisions actually move the needle.</p>
+        <div class="actions"><button class="btn primary" data-event="hero_explore_click" onclick="scrollToSection('domains')">Explore analytics <span aria-hidden="true">↗</span></button><button class="btn secondary" data-event="hero_demo_click" onclick="scrollToSection('calculator')">Try the live calculator</button></div>
+        <div class="micro">A hands-on guide to analytics across six real-world domains.</div>
+      </div>
+      <div class="dashboard" aria-label="Illustrative analytics dashboard">
+        <div class="dash-top"><div><div class="dash-title">Your signals, at a glance</div><small class="muted">Illustrative dashboard · sample data</small></div><span class="live">● EXAMPLE</span></div>
+        <div class="metrics">
+          <div class="metric"><small>Active users</small><strong>12.8k</strong><span class="positive">↗ 18.4% vs. last period</span></div>
+          <div class="metric"><small>Goal completion</small><strong>6.2%</strong><span class="positive">↗ 1.1 percentage points</span></div>
+          <div class="metric"><small>Engaged sessions</small><strong>8.4k</strong><span class="positive">↗ 9.7% vs. last period</span></div>
+          <div class="metric"><small>Drop-off point</small><strong>Step 2</strong><span style="color:var(--yellow);font-size:.8rem">Needs investigation</span></div>
+        </div>
+        <div class="chart"><svg viewBox="0 0 400 120" preserveAspectRatio="none" role="img" aria-label="Sample upward trend line"><path class="gridline" d="M0 25H400 M0 60H400 M0 95H400"/><path d="M4 95 C28 90 35 70 62 79 S95 93 121 62 S159 72 182 49 S220 62 244 38 S282 55 309 26 S350 41 396 9"/></svg></div>
+      </div>
+    </div>
+
+    <section id="domains">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">Analytics, in context</div><h2>Every domain has<br/>a different question.</h2></div><p>Choose a domain to see the questions analytics can answer, the signals worth tracking, and an example of a useful next step.</p></div>
+        <div class="domain-grid">
+          <article class="domain active" data-domain="business"><div class="icon">↗</div><h3>Business & retail</h3><p>Understand what drives sales, repeat purchases, and customer lifetime value.</p><button data-event="domain_business_click" onclick="showDomain('business')">Explore insights →</button></article>
+          <article class="domain" data-domain="education"><div class="icon">✳</div><h3>Education</h3><p>Spot learning bottlenecks and improve course completion and engagement.</p><button data-event="domain_education_click" onclick="showDomain('education')">Explore insights →</button></article>
+          <article class="domain" data-domain="healthcare"><div class="icon">＋</div><h3>Healthcare</h3><p>Improve service access, appointment flow, and operational planning.</p><button data-event="domain_healthcare_click" onclick="showDomain('healthcare')">Explore insights →</button></article>
+          <article class="domain" data-domain="marketing"><div class="icon">◎</div><h3>Marketing</h3><p>Learn which campaigns bring the right audience and meaningful action.</p><button data-event="domain_marketing_click" onclick="showDomain('marketing')">Explore insights →</button></article>
+          <article class="domain" data-domain="product"><div class="icon">⌘</div><h3>Digital products</h3><p>Find friction in onboarding, feature discovery, and user journeys.</p><button data-event="domain_product_click" onclick="showDomain('product')">Explore insights →</button></article>
+          <article class="domain" data-domain="public"><div class="icon">⌂</div><h3>Public services</h3><p>Make services easier to access and allocate resources more fairly.</p><button data-event="domain_public_click" onclick="showDomain('public')">Explore insights →</button></article>
+        </div>
+        <div class="insight-panel" aria-live="polite">
+          <div><div class="eyebrow" id="panel-eyebrow">BUSINESS & RETAIL</div><h3 id="panel-title">What makes customers come back?</h3><p id="panel-copy">Connect product discovery, checkout behaviour, and repeat visits to understand where the customer experience creates value—and where it creates friction.</p><div class="event-log"><span class="event-pill">domain_selected</span><span class="event-pill" id="event-domain">business</span></div></div>
+          <div class="insight-list" id="panel-list">
+            <div class="insight-row"><span class="tick">✓</span><div><b>Track</b><br/><span class="muted">Product views, add-to-cart, checkout completion, repeat purchase.</span></div></div>
+            <div class="insight-row"><span class="tick">✓</span><div><b>Learn</b><br/><span class="muted">Which channel and product combinations lead to profitable orders.</span></div></div>
+            <div class="insight-row"><span class="tick">✓</span><div><b>Act</b><br/><span class="muted">Test a simpler checkout or more relevant product recommendations.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator">
+      <div class="wrap split">
+        <div><div class="eyebrow">Make the numbers useful</div><h2 style="font-size:clamp(2.2rem,4vw,3.5rem);letter-spacing:-.065em;line-height:1.02;margin:12px 0 18px">Estimate the value of one improvement.</h2><p class="muted">A simple scenario calculator shows why small conversion improvements can matter. Use your own numbers; the result is an estimate, not a forecast.</p><div class="event-log"><span class="event-pill">calculator_used</span><span class="event-pill">estimate_updated</span></div></div>
+        <div class="card">
+          <h3>Conversion impact calculator</h3>
+          <p class="muted" style="font-size:.9rem">Change the inputs to model a scenario.</p>
+          <div class="field"><label for="visitors">Monthly visitors / users</label><input id="visitors" type="number" min="0" value="10000" step="500"/></div>
+          <div class="field"><label for="conversion">Current conversion rate (%)</label><input id="conversion" type="number" min="0" max="100" value="2.5" step=".1"/></div>
+          <div class="field"><label for="uplift">Potential improvement (percentage points)</label><input id="uplift" type="number" min="0" max="100" value="0.5" step=".1"/></div>
+          <div class="field"><label for="value">Value per conversion (₹)</label><input id="value" type="number" min="0" value="1200" step="100"/></div>
+          <button class="btn primary" style="width:100%" id="calculate" data-event="calculator_run">Calculate scenario ↗</button>
+          <div class="result" aria-live="polite"><span class="muted">Estimated additional monthly value</span><strong id="result-value">₹60,000</strong><p id="result-copy">About 50 additional conversions at the selected assumptions.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="wrap split">
+        <div><div class="eyebrow">Test your analytics instinct</div><h2 style="font-size:clamp(2.2rem,4vw,3.5rem);letter-spacing:-.065em;line-height:1.02;margin:12px 0 18px">A metric is only useful if it answers a question.</h2><p class="muted">Try a quick scenario. Your answer is tracked as an interaction event so you can see how visitors engage with this demo.</p></div>
+        <div class="card">
+          <div class="eyebrow">SCENARIO 01 / PRODUCT ANALYTICS</div>
+          <h3 style="margin-top:12px">Lots of people start signup, but few finish. What should you investigate first?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="a" data-event="quiz_answer_funnel" onclick="answerQuiz('a')">A. Add more features to the homepage</button>
+            <button class="quiz-option" data-answer="b" data-event="quiz_answer_friction" onclick="answerQuiz('b')">B. Find the step where people abandon signup</button>
+            <button class="quiz-option" data-answer="c" data-event="quiz_answer_traffic" onclick="answerQuiz('c')">C. Only measure total page views</button>
+          </div>
+          <div class="feedback" id="quiz-feedback" aria-live="polite">Choose an answer to reveal the insight.</div>
+          <button class="btn secondary" id="quiz-reset" data-event="quiz_reset" onclick="resetQuiz()">Try again</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">From click to decision</div><h2>Three steps to better decisions.</h2></div><p>Analytics is not just collecting numbers. It is a loop: define the question, measure behaviour, then use evidence to improve.</p></div>
+        <div class="steps">
+          <div class="step"><span class="num">01 / DEFINE</span><h3>Choose a question</h3><p>Example: “Where do visitors leave the signup flow?” A clear question helps you choose meaningful events.</p></div>
+          <div class="step"><span class="num">02 / MEASURE</span><h3>Capture the journey</h3><p>Track relevant actions, compare segments, and check whether your data is complete and trustworthy.</p></div>
+          <div class="step"><span class="num">03 / IMPROVE</span><h3>Test an action</h3><p>Make one focused change, compare outcomes, and keep it only if the evidence supports it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap cta"><div><h2>Turn your next click<br/>into a useful signal.</h2><p>Explore a domain, run a scenario, and see how the right measurement can lead to a better decision.</p></div><button class="btn" data-event="footer_cta_click" onclick="scrollToSection('domains')">Explore the domains ↗</button></div>
+    </section>
+  </main>
+
+  <footer class="wrap"><div class="footer-row"><span>© 2026 Signal Analytics Demo</span><span>Sample dashboard values are illustrative. Do not enter personal or sensitive information.</span><a href="#top" data-event="back_to_top_click">Back to top ↑</a></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="consent" id="consent-banner" role="dialog" aria-label="Analytics preferences">
+    <p><b>Your privacy matters.</b> This demo can send anonymous usage events to Google Analytics after you opt in. Analytics is off until you choose. Avoid entering personal or sensitive information.</p>
+    <div class="consent-actions"><button class="reject" id="reject-consent">Reject analytics</button><button class="accept" id="accept-consent">Allow analytics</button></div>
+  </div>
+
+  <script>
+    // SETUP: Replace this with your GA4 Measurement ID (format: G-XXXXXXXXXX).
+    // Analytics only loads after a visitor opts in on this demo.
+    const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+    let analyticsEnabled = false;
+    let gtagReady = false;
+
+    function loadGoogleAnalytics() {
+      if (gtagReady || !/^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID) || GA_MEASUREMENT_ID === "G-XXXXXXXXXX") {
+        if (GA_MEASUREMENT_ID === "G-XXXXXXXXXX") console.info("Add your GA4 Measurement ID in index.html to enable real analytics.");
+        return;
+      }
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_MEASUREMENT_ID);
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+      gtagReady = true;
+    }
+    function trackEvent(eventName, params = {}) {
+      // Console logs make the demo usable before a real GA4 ID is configured.
+      console.info("[demo analytics]", eventName, params);
+      if (analyticsEnabled && gtagReady && typeof window.gtag === "function") {
+        gtag("event", eventName, params);
+      }
+    }
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.style.display = "none", 2400);
+    }
+    function scrollToSection(id) {
+      trackEvent("section_cta_click", { destination: id });
+      document.getElementById(id).scrollIntoView({behavior:"smooth"});
+    }
+
+    const domainData = {
+      business: {label:"BUSINESS & RETAIL", title:"What makes customers come back?", copy:"Connect product discovery, checkout behaviour, and repeat visits to understand where the customer experience creates value—and where it creates friction.", events:["product_view","add_to_cart","checkout_complete","repeat_purchase"], learn:"Which channel and product combinations lead to profitable orders.", act:"Test a simpler checkout or more relevant product recommendations."},
+      education: {label:"EDUCATION", title:"Where do learners get stuck?", copy:"Follow lesson starts, assessment attempts, and course completion to identify topics or formats where learners need more support.", events:["lesson_started","quiz_attempted","lesson_completed","course_completed"], learn:"Which lessons correlate with drop-off or repeated mistakes.", act:"Add a worked example, a short recap, or targeted support at the difficult step."},
+      healthcare: {label:"HEALTHCARE", title:"How can care become easier to access?", copy:"Measure appointment availability, waiting times, and digital service completion while protecting patient privacy and following applicable rules.", events:["appointment_search","booking_started","booking_completed","wait_time"], learn:"Where scheduling friction and capacity constraints affect access.", act:"Improve appointment reminders or adjust staffing around observed demand."},
+      marketing: {label:"MARKETING", title:"Which campaigns create meaningful action?", copy:"Connect campaign sources to engaged visits, signups, and qualified leads rather than judging success on clicks alone.", events:["campaign_landing","engaged_session","lead_submitted","signup_complete"], learn:"Which channels bring visitors who take valuable next steps.", act:"Shift effort toward better-performing audiences and test landing-page messaging."},
+      product: {label:"DIGITAL PRODUCTS", title:"Which step creates friction?", copy:"Map the user journey from first visit to activation, then investigate the steps where people abandon or fail to discover key features.", events:["signup_started","signup_completed","feature_used","subscription_started"], learn:"Where users abandon onboarding and which features support retention.", act:"Simplify the highest-friction step and validate the change with a test."},
+      public: {label:"PUBLIC SERVICES", title:"Are services reaching the people who need them?", copy:"Use aggregated service data to understand demand, completion rates, and access gaps without exposing personal or sensitive information.", events:["service_page_view","form_started","form_completed","support_requested"], learn:"Which forms or service journeys have the highest abandonment.", act:"Make instructions clearer and test whether residents complete the task more easily."}
+    };
+    function showDomain(key) {
+      const d = domainData[key];
+      if (!d) return;
+      document.querySelectorAll(".domain").forEach(el => el.classList.toggle("active", el.dataset.domain === key));
+      document.getElementById("panel-eyebrow").textContent = d.label;
+      document.getElementById("panel-title").textContent = d.title;
+      document.getElementById("panel-copy").textContent = d.copy;
+      document.getElementById("event-domain").textContent = key;
+      document.getElementById("panel-list").innerHTML =
+        `<div class="insight-row"><span class="tick">✓</span><div><b>Track</b><br/><span class="muted">${d.events.join(", ")}.</span></div></div>` +
+        `<div class="insight-row"><span class="tick">✓</span><div><b>Learn</b><br/><span class="muted">${d.learn}</span></div></div>` +
+        `<div class="insight-row"><span class="tick">✓</span><div><b>Act</b><br/><span class="muted">${d.act}</span></div></div>`;
+      trackEvent("domain_selected", { domain: key });
+      showToast("Exploring: " + key);
+    }
+
+    function calculate() {
+      const visitors = Math.max(0, Number(document.getElementById("visitors").value) || 0);
+      const conversion = Math.min(100, Math.max(0, Number(document.getElementById("conversion").value) || 0));
+      const uplift = Math.min(100, Math.max(0, Number(document.getElementById("uplift").value) || 0));
+      const value = Math.max(0, Number(document.getElementById("value").value) || 0);
+      const extra = visitors * (uplift / 100);
+      const money = extra * value;
+      document.getElementById("result-value").textContent = money.toLocaleString("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0});
+      document.getElementById("result-copy").textContent = `About ${Math.round(extra).toLocaleString("en-IN")} additional conversions if the rate improves from ${conversion}% to ${(conversion + uplift).toFixed(1)}%, assuming traffic and value per conversion stay constant.`;
+      trackEvent("calculator_used", { visitors: Math.round(visitors), current_conversion_rate: conversion, uplift_percentage_points: uplift, value_per_conversion: value, estimated_extra_conversions: Math.round(extra) });
+    }
+    document.getElementById("calculate").addEventListener("click", calculate);
+    ["visitors","conversion","uplift","value"].forEach(id => document.getElementById(id).addEventListener("change", () => trackEvent("calculator_input_changed", { field: id })));
+
+    function answerQuiz(answer) {
+      document.querySelectorAll(".quiz-option").forEach(el => el.classList.toggle("selected", el.dataset.answer === answer));
+      const correct = answer === "b";
+      document.getElementById("quiz-feedback").textContent = correct ? "Exactly. A funnel shows the step where users drop off, giving you a testable hypothesis." : "Not quite. Start by finding the step where users abandon signup, then investigate why.";
+      trackEvent("quiz_answered", { question_id:"signup_dropoff", answer: answer, correct: correct });
+    }
+    function resetQuiz() {
+      document.querySelectorAll(".quiz-option").forEach(el => el.classList.remove("selected"));
+      document.getElementById("quiz-feedback").textContent = "Choose an answer to reveal the insight.";
+      trackEvent("quiz_reset", { question_id:"signup_dropoff" });
+    }
+
+    // Delegate tracking for tagged links/buttons and keep event names human-readable.
+    document.addEventListener("click", (event) => {
+      const el = event.target.closest("[data-event]");
+      if (!el) return;
+      const name = el.dataset.event;
+      if (name.startsWith("domain_")) return; // domain_selected is emitted by showDomain()
+      if (name === "calculator_run") return; // calculator_used is emitted with values by calculate()
+      if (name.startsWith("quiz_answer_") || name === "quiz_reset") return; // richer quiz events emitted above
+      trackEvent(name, { element_text: (el.innerText || el.getAttribute("aria-label") || "").trim().slice(0,80) });
+    });
+
+    function consentChoice(allowed) {
+      document.getElementById("consent-banner").style.display = "none";
+      analyticsEnabled = allowed;
+      // Store preference locally. This is a convenience for this demo, not a consent-management platform.
+      try { localStorage.setItem("signal_analytics_consent", allowed ? "granted" : "denied"); } catch(e) {}
+      if (allowed) {
+        loadGoogleAnalytics();
+        trackEvent("analytics_consent_granted");
+        showToast("Analytics opted in");
+      } else {
+        showToast("Analytics remains off");
+      }
+    }
+    document.getElementById("accept-consent").addEventListener("click", () => consentChoice(true));
+    document.getElementById("reject-consent").addEventListener("click", () => consentChoice(false));
+    try {
+      const saved = localStorage.getItem("signal_analytics_consent");
+      if (saved === "granted") { analyticsEnabled = true; loadGoogleAnalytics(); }
+      else if (saved === "denied") { analyticsEnabled = false; }
+      else document.getElementById("consent-banner").style.display = "flex";
+    } catch(e) { document.getElementById("consent-banner").style.display = "flex"; }
+
+    calculate();
+    trackEvent("demo_loaded", { page_type:"analytics_education_landing_page" });
+  </script>
+</body>
+</html>
